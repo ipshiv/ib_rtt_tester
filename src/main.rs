@@ -28,6 +28,9 @@ impl Tester {
         if !cmd.contains("=>") {
             string.push_str(cmd);
             string.push_str(" :red_circle:\n");
+            if !self.is_silent {
+                println!("LOG: **** CMD comes without expectation =>")
+            }
         } else {
             let vec: Vec<&str> = cmd.split("=>").collect();
             string = vec[0].to_string();
@@ -36,7 +39,7 @@ impl Tester {
 
         if !self.is_silent {
             let log = string.as_str();
-            println!("LOG: {}", log);
+            print!("LOG: {}", log);
         }
 
         string.to_string()
